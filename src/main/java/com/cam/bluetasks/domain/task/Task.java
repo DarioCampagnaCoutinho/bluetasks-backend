@@ -8,6 +8,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
 
 import com.cam.bluetasks.domain.user.AppUser;
 
@@ -19,14 +24,19 @@ public class Task {
 	@GeneratedValue
 	private Integer id;
 	
+	@NotEmpty(message = "A descrição da tarefa é obrigatório.")
+	@Length(min = 3, max = 40, message = "O tamanho da tarefa é inválido!")
 	private String description;
 	
+	@NotNull(message = "A data da tarefa é obrigatório.")
+	@FutureOrPresent(message = "A data da tarefa não pode estar no passado.")
 	private LocalDate whenToDo;
 	
 	private Boolean done = false;
 	
 	@ManyToOne
 	@JoinColumn(name = "app_user_id")
+	@NotNull(message = "O usuário da tarefa é obrigatório.")
 	private AppUser appUser;
 	
 	public Task() {
