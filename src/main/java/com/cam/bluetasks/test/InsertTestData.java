@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.cam.bluetasks.domain.task.Task;
 import com.cam.bluetasks.domain.task.TaskRepository;
@@ -27,8 +29,8 @@ public class InsertTestData {
 	
 	@EventListener
 	public void onApplicationEvent(ContextRefreshedEvent event) {
-		//TODO: Temos que fazer criptográfia do password
-		AppUser appUser = new AppUser("Dario", "123456", "Dario Campagna");
+		PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+		AppUser appUser = new AppUser("Dario", encoder.encode("abc"), "Dario Campagna");
 		appUserRepository.save(appUser);
 		
 		LocalDate baseData = LocalDate.parse("2025-09-09");
