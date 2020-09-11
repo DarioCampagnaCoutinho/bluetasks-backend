@@ -15,7 +15,7 @@ public class AppUser {
 	private Integer id;
 	
 	@NotEmpty(message = "O nome de usuário é obrigatório")
-	private String userName;
+	private String username;
 	
 	@NotEmpty(message = "A senha de usuário é obrigatório")
 	private String password;
@@ -26,8 +26,8 @@ public class AppUser {
 	public AppUser() {
 	}
 
-	public AppUser(String userName, String password, String displayName) {
-		this.userName = userName;
+	public AppUser(String username, String password, String displayName) {
+		this.username = username;
 		this.password = password;
 		this.displayName = displayName;
 	}
@@ -40,12 +40,12 @@ public class AppUser {
 		this.id = id;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {
@@ -63,6 +63,7 @@ public class AppUser {
 	public void setDisplayName(String displayName) {
 		this.displayName = displayName;
 	}
-	
+
+		
 
 }

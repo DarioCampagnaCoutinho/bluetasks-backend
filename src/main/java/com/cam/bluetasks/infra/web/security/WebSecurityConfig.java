@@ -25,7 +25,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
 				.antMatchers("/h2-console/**").permitAll()
 				.anyRequest().authenticated()
 		.and()
-			.addFilter(new JWAuthenticationFilter(authenticationManager()))
+			.addFilter(new JWTAuthenticationFilter(authenticationManager()))
 			.addFilter(new JWTAuthorizationFilter(authenticationManager()))
 		.sessionManagement()
 			.sessionCreationPolicy(SessionCreationPolicy.STATELESS);

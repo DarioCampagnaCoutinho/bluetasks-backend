@@ -30,7 +30,7 @@ public class InsertTestData {
 	@EventListener
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-		AppUser appUser = new AppUser("Dario", encoder.encode("abc"), "Dario Campagna");
+		AppUser appUser = new AppUser("dario", encoder.encode("abc"), "Dario Campagna");
 		appUserRepository.save(appUser);
 		
 		LocalDate baseData = LocalDate.parse("2025-09-09");
