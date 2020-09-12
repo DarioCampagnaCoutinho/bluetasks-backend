@@ -30,16 +30,26 @@ public class InsertTestData {
 	@EventListener
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-		AppUser appUser = new AppUser("dario", encoder.encode("abc"), "Dario Campagna");
-		appUserRepository.save(appUser);
+		AppUser appUser1 = new AppUser("dario", encoder.encode("abc"), "Dario Campagna");
+		appUserRepository.save(appUser1);
+		
+		AppUser appUser2 = new AppUser("mario", encoder.encode("dfg"), "Mario Campagna");
+		appUserRepository.save(appUser2);
 		
 		LocalDate baseData = LocalDate.parse("2025-09-09");
 		
-		for(int i = 0; i < 10; i++) {
-			Task task1 = new Task("Tarefa #" + i, baseData.plusDays(i), false);
-			task1.setAppUser(appUser);
+		for(int i = 1; i <= 5; i++) {
+			Task task1 = new Task(String.format("Tarefa %s #%d" ,appUser1.getUsername(), i), baseData.plusDays(i), false);
+			task1.setAppUser(appUser1);
 			taskRepository.save(task1);
 		}
+		
+		for(int i = 1; i <= 5; i++) {
+			Task task1 = new Task(String.format("Tarefa %s #%d" ,appUser2.getUsername(), i), baseData.plusDays(i), false);
+			task1.setAppUser(appUser2);
+			taskRepository.save(task1);
+		}
+		
 	}
 	
 	
