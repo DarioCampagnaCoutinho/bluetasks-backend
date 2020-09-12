@@ -3,6 +3,7 @@ package com.cam.bluetasks.domain.task;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -18,6 +19,7 @@ import com.cam.bluetasks.domain.user.AppUser;
 
 @Entity
 @Table(name = "task")
+@EntityListeners(TaskListener.class)
 public class Task {
 	
 	@Id
