@@ -16,6 +16,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 
 import com.cam.bluetasks.domain.user.AppUser;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "task")
@@ -38,6 +39,7 @@ public class Task {
 	
 	@ManyToOne
 	@JoinColumn(name = "app_user_id")
+	@JsonIgnore
 	private AppUser appUser;
 	
 	public Task() {
